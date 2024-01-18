@@ -1,0 +1,22 @@
+[
+    { "description": "Electronics" , "name": "Electronics" },
+    { "description": "Fashion" , "name": "Fashion" },
+    { "description": "Home and Furniture" , "name": "Home and Furniture" },
+    { "description": "Health and Beauty" , "name": "Health and Beauty" },
+    { "description": "Toys and Games" , "name": "Toys and Games" },
+    { "description": "Books and Media" , "name": "Books and Media" },
+    { "description": "Sports and Fitness" , "name": "Sports and Fitness" },
+    { "description": "Automotive" , "name": "Automotive" },
+    { "description": "Electrical and Tools" , "name": "Electrical and Tools" },
+    { "description": "Food and Groceries" , "name": "Food and Groceries" },
+    { "description": "Pets" , "name": "Pets" },
+    { "description": "Jewelry and Watches" , "name": "Jewelry and Watches" },
+    { "description": "Travel and Luggage" , "name": "Travel and Luggage" },
+    { "description": "Art and Collectibles" , "name": "Art and Collectibles" },
+    { "description": "Office and Stationery" , "name": "Office and Stationery" },
+    { "description": "Baby and Maternity" , "name": "Baby and Maternity" },
+    { "description": "Hobbies and Leisure" , "name": "Hobbies and Leisure" },
+    { "description": "Industrial and Scientific" , "name": "Industrial and Scientific" },
+    { "description": "Garden and Outdoor" , "name": "Garden and Outdoor" },
+    { "description": "Gifts and Special Occasions", "name": "Gifts and Special Occasions" }
+]

@@ -1,0 +1,83 @@
+# name: CI
+
+# on:
+#   push:
+#     branches: [ master ]
+#   # pull_request:
+#   #   branches: [ master ]
+
+#   workflow_dispatch:
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     if: github.ref == 'refs/heads/master'
+
+#     strategy:
+#       matrix:
+#         node-version: [14.x]
+
+#     steps:
+#       - uses: actions/checkout@v2
+
+#       - run: npm ci
+#       - run: npm run build
+#       - run: npm run test
+
+#       - name: rsync deployments
+#         uses: burnett01/rsync-deployments@5.1
+#         with:
+#           switches: -avzr --delete
+#           path: ./*
+#           remote_path: /var/www/ecommerce-app/
+#           remote_host: "${{ secrets.E_COMMERCE_SERVER_HOST }}"
+#           remote_user: ubuntu
+#           remote_key: "${{ secrets.E_COMMERCE_SERVER_KEY }}"
+
+name: ECOMMERCE-CI
+
+on:
+  push:
+    branches: [ master ]
+  # pull_request:
+  #   branches: [ master ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Remove node_modules, yarn.lock, and dist
+        run: |
+          rm -rf node_modules
+          rm -rf dist
+      - name: Install dependencies
+        run: yarn
+      - name: Build application
+        run: yarn run build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@5.1
+        with:
+          switches: -avzr --delete
+          path: ./*
+          remote_path: /var/www/ecommerce-app/
+          remote_host: "${{ secrets.E_COMMERCE_SERVER_HOST }}"
+          remote_user: ubuntu
+          remote_key: "${{ secrets.E_COMMERCE_SERVER_KEY }}"
